@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Ball2.gd" type="Script" id=1]
+[ext_resource path="res://ball.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 38.2432
+
+[node name="Ball" type="RigidBody2D"]
+
+input_pickable = false
+collision_layer = 5
+collision_mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.8
+gravity_scale = 0.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Polygon2D" type="Polygon2D" parent="." index="0"]
+
+visible = false
+scale = Vector2( 3.96868, 3.96868 )
+polygon = PoolVector2Array( -9.66568, -0.12685, -8.71789, -4.20332, -6.86311, -6.74144, -4.22737, -8.64504, 0.0191106, -9.62124, 3.72868, -8.84028, 7.09657, -6.49739, 8.7073, -4.1057, 9.68351, -0.0544636, 8.41444, 4.63131, 5.82751, 7.65753, 3.91834, 8.82822, -0.0841408, 9.5822, -3.98332, 8.73135, -6.8143, 6.77895, -8.96194, 3.31343 )
+uv = PoolVector2Array(  )
+color = Color( 0.964844, 0.536365, 0.158295, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = true
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+visible = false
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="." index="2"]
+
+texture = ExtResource( 2 )
+
+
