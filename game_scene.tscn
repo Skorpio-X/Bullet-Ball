@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://game_scene.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
@@ -7,9 +7,8 @@
 [ext_resource path="res://shoot.wav" type="AudioStream" id=5]
 [ext_resource path="res://laser18B.wav" type="AudioStream" id=6]
 [ext_resource path="res://shoot2.wav" type="AudioStream" id=7]
-[ext_resource path="res://explosion_mix.wav" type="AudioStream" id=8]
-[ext_resource path="res://explosion8.wav" type="AudioStream" id=9]
-[ext_resource path="res://goal.wav" type="AudioStream" id=10]
+[ext_resource path="res://explosion8.wav" type="AudioStream" id=8]
+[ext_resource path="res://goal.wav" type="AudioStream" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -416,12 +415,12 @@ bus = "Master"
 [node name="explosion_sound" type="AudioStreamPlayer" parent="." index="19"]
 
 stream = ExtResource( 8 )
-volume_db = 0.0
+volume_db = -9.0
 autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="explosion_sound2" type="AudioStreamPlayer" parent="." index="20"]
+[node name="goal_sound" type="AudioStreamPlayer" parent="." index="20"]
 
 stream = ExtResource( 9 )
 volume_db = -9.0
@@ -429,15 +428,7 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="goal_sound" type="AudioStreamPlayer" parent="." index="21"]
-
-stream = ExtResource( 10 )
-volume_db = -9.0
-autoplay = false
-mix_target = 0
-bus = "Master"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="22"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="21"]
 
 root_node = NodePath("..")
 autoplay = ""
@@ -447,7 +438,7 @@ playback_speed = 1.0
 anims/shake = SubResource( 5 )
 blend_times = [  ]
 
-[node name="Camera2D" type="Camera2D" parent="." index="23"]
+[node name="Camera2D" type="Camera2D" parent="." index="22"]
 
 offset = Vector2( 640, 360 )
 anchor_mode = 1

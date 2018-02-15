@@ -26,5 +26,5 @@ func _process(delta):
 		particles.position = position
 		particles.modulate = self.color
 		$'..'.add_child(particles)
-		get_node('../../explosion_sound2').play()
+		get_node('../../explosion_sound').play()
 		queue_free()
