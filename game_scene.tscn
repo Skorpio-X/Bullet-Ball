@@ -1,7 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://game_scene.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://TranscendsGames.tres" type="DynamicFont" id=3]
+[ext_resource path="res://TranscendsGames.otf" type="DynamicFontData" id=4]
+[ext_resource path="res://shoot.wav" type="AudioStream" id=5]
+[ext_resource path="res://laser18B.wav" type="AudioStream" id=6]
+[ext_resource path="res://shoot2.wav" type="AudioStream" id=7]
+[ext_resource path="res://explosion_mix.wav" type="AudioStream" id=8]
+[ext_resource path="res://explosion8.wav" type="AudioStream" id=9]
+[ext_resource path="res://goal.wav" type="AudioStream" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -17,6 +25,45 @@ extents = Vector2( 131, 528 )
 
 custom_solver_bias = 0.0
 extents = Vector2( 824.666, 86 )
+
+[sub_resource type="DynamicFont" id=4]
+
+size = 42
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 4 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="Animation" id=5]
+
+resource_name = "shake"
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 640, 360 ), Vector2( 648, 370 ), Vector2( 631, 355 ), Vector2( 655, 380 ), Vector2( 634, 347 ), Vector2( 640, 360 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera2D:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -2.0, 3.7, -3.7, 2.8, 0.0 ]
+}
 
 [node name="scene_root" type="Node2D" index="0"]
 
@@ -85,6 +132,7 @@ polygon = PoolVector2Array( 0, 220, 20, 220, 20, 500, 0, 500 )
 
 [node name="goal2" type="Area2D" parent="." index="1"]
 
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -153,6 +201,7 @@ polygon = PoolVector2Array( 1260, 220, 1280, 220, 1280, 500, 1260, 500 )
 
 [node name="walls" type="StaticBody2D" parent="." index="4"]
 
+editor/display_folded = true
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -211,18 +260,20 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 40.0
-margin_bottom = 14.0
+margin_left = 5.0
+margin_right = 45.0
+margin_bottom = 46.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_fonts/font = ExtResource( 3 )
 text = "0"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
+_sections_unfolded = [ "custom_colors", "custom_constants", "custom_fonts" ]
 
 [node name="points2" type="Label" parent="." index="8"]
 
@@ -238,6 +289,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_fonts/font = ExtResource( 3 )
 text = "0"
 align = 2
 percent_visible = 1.0
@@ -279,11 +331,13 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_fonts/font = SubResource( 4 )
 text = "0"
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
 
 [node name="ball_spawn1" type="Position2D" parent="." index="11"]
 
@@ -308,19 +362,117 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 620.0
-margin_top = 217.0
-margin_right = 660.0
-margin_bottom = 231.0
+margin_left = 495.0
+margin_top = 221.0
+margin_right = 753.0
+margin_bottom = 284.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_fonts/font = ExtResource( 3 )
 align = 1
+valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="shoot_sound" type="AudioStreamPlayer" parent="." index="15"]
+
+stream = ExtResource( 5 )
+volume_db = -3.0
+autoplay = false
+mix_target = 0
+bus = "Bus1"
+
+[node name="shoot_sound2" type="AudioStreamPlayer" parent="." index="16"]
+
+stream = ExtResource( 5 )
+volume_db = -3.0
+autoplay = false
+mix_target = 0
+bus = "Bus2"
+
+[node name="shoot_sound3" type="AudioStreamPlayer2D" parent="." index="17"]
+
+stream = ExtResource( 6 )
+volume_db = 0.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Bus3"
+area_mask = 1
+
+[node name="shoot_sound4" type="AudioStreamPlayer" parent="." index="18"]
+
+stream = ExtResource( 7 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="explosion_sound" type="AudioStreamPlayer" parent="." index="19"]
+
+stream = ExtResource( 8 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="explosion_sound2" type="AudioStreamPlayer" parent="." index="20"]
+
+stream = ExtResource( 9 )
+volume_db = -9.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="goal_sound" type="AudioStreamPlayer" parent="." index="21"]
+
+stream = ExtResource( 10 )
+volume_db = -9.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="22"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/shake = SubResource( 5 )
+blend_times = [  ]
+
+[node name="Camera2D" type="Camera2D" parent="." index="23"]
+
+offset = Vector2( 640, 360 )
+anchor_mode = 1
+rotating = true
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+_sections_unfolded = [ "Offset", "Transform" ]
 
 [connection signal="body_entered" from="goal1" to="." method="_on_goal1_body_entered"]
 

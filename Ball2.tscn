@@ -10,6 +10,7 @@ radius = 38.2432
 
 [node name="Ball" type="RigidBody2D"]
 
+modulate = Color( 1, 0.65863, 0.0703125, 1 )
 input_pickable = false
 collision_layer = 5
 collision_mask = 1
@@ -29,7 +30,7 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Transform" ]
+_sections_unfolded = [ "Collision", "Transform", "Visibility" ]
 
 [node name="Polygon2D" type="Polygon2D" parent="." index="0"]
 

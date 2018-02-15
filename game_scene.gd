@@ -1,5 +1,6 @@
 extends Node2D
 
+
 var ball = preload("res://Ball2.tscn")
 var projectile = preload("res://Projectile.tscn")
 var player1_start_pos = Vector2(130, 360)
@@ -25,18 +26,20 @@ func _process(delta):
 	if Input.is_action_pressed('player1_shoot') and $player1.shoot_timer <= 0:
 		create_projectile($player1)
 		$player1.shoot_timer = .5
+		$shoot_sound2.play()
+		$shoot_sound3.play()
 	if Input.is_action_pressed('player2_shoot') and $player2.shoot_timer <= 0:
 		create_projectile($player2)
 		$player2.shoot_timer = .5
+		$shoot_sound2.play()
+		$shoot_sound3.play()
 	if game_over and Input.is_action_just_pressed('restart'):
 		restart()
 	
 	var time_left = $Timer.time_left
 	var minutes = time_left / 60
 	var seconds = fmod(time_left, 60)
-#	$time.text = str(round($Timer.time_left))
-#	$time.text = str(round(361.5) % 60)
-	$time.text = str('%02d : %02d' % [minutes, seconds])
+	$time.text = str('%02d:%02d' % [minutes, seconds])
 	
 	# Debugging label.
 #	$debug.text = str($player1.rotation, $player1.vel, $player2.rotation)
@@ -79,26 +82,26 @@ func restart():
 
 func _on_goal1_body_entered( body ):
 	if $balls.is_a_parent_of(body):
-		print('ball %s entered 1 ' % body.spawn)
+		$goal_sound.play()
 		points2 += 1
 		$points2.text = str(points2)
 		create_ball(body.spawn)
 		body.queue_free()
+		$AnimationPlayer.play("shake")
 		if points2 >= max_points:
 			_on_Timer_timeout()
-	print('body entered goal 1 ', body)
 
 
 func _on_goal2_body_entered( body ):
 	if $balls.is_a_parent_of(body):
-		print('ball %s entered 2 ' % body.spawn)
+		$goal_sound.play()
 		points1 += 1
 		$points1.text = str(points1)
 		create_ball(body.spawn)
 		body.queue_free()
+		$AnimationPlayer.play("shake")
 		if points1 >= max_points:
 			_on_Timer_timeout()
-	print('body entered goal 2 ', body)
 
 
 func _on_Timer_timeout():

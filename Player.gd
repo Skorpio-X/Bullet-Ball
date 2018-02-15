@@ -1,5 +1,6 @@
 extends RigidBody2D
 
+
 var angle_speed = 120
 var angle_change = 0
 var vel_orig = Vector2(1, 0)
@@ -22,6 +23,7 @@ func _ready():
 	custom_integrator = true
 	angular_damp = 10
 	$Polygon2D.color = color
+	$Particles2D.modulate = color
 
 
 func _input(event):

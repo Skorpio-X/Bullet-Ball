@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/goal.wav-b79fa619d4d8f104f87c189cd87e0efd.sample"
+
+[deps]
+
+source_file="res://goal.wav"
+source_md5="d5f06240b3043d1c8024359555020f17"
+
+dest_files=[ "res://.import/goal.wav-b79fa619d4d8f104f87c189cd87e0efd.sample" ]
+dest_md5="48e3e1fe3c06d5ad50470188d129b643"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
