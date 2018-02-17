@@ -1,4 +1,4 @@
-# Bullet-Ball
+# Dyna Ball
 
 A ball game with bullets. Created by Skorpio in 2018.
 
@@ -6,7 +6,7 @@ A ball game with bullets. Created by Skorpio in 2018.
 
 Download this repository and unzip it, and also download the Godot engine from https://godotengine.org 
 
-Open Godot, click on "scan", select the Bullet Ball directory, then click on "run" and the game will start.
+Open Godot, click on "scan", select the Dyna Ball directory, then click on "run" and the game will start.
 
 ## Controls
 
