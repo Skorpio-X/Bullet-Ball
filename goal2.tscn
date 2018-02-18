@@ -1,0 +1,72 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 20, 140 )
+
+[node name="goal2" type="Area2D"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="Polygon2D2" type="Polygon2D" parent="." index="0"]
+
+position = Vector2( 1282.78, 686.963 )
+rotation = 3.14159
+polygon = PoolVector2Array( 0.935425, -32.0992, 162.78, -33.0366, 102.78, 186.963, 22.7795, 210.963, 22.7789, 442.963, 102.779, 466.963, 162.778, 686.963, 2.77832, 686.963 )
+uv = PoolVector2Array(  )
+color = Color( 0.0715179, 0.101962, 0.425781, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = true
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+position = Vector2( 1280, 360 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." index="2"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2" index="0"]
+
+position = Vector2( 1277.69, 694.796 )
+rotation = -3.15429
+build_mode = 0
+polygon = PoolVector2Array( 95.2103, 196.021, 157.998, -23.2001, -1.98914, -25.231, -5.16235, 224.749 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D2" index="1"]
+
+position = Vector2( 1286.25, -512.746 )
+scale = Vector2( -0.965513, 1 )
+build_mode = 0
+polygon = PoolVector2Array( 6.47729, 512.746, 172.192, 512.746, 110.049, 732.746, 6.47729, 762.746 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D2" index="2"]
+
+build_mode = 0
+polygon = PoolVector2Array( 1260, 220, 1280, 220, 1280, 500, 1260, 500 )
+
+

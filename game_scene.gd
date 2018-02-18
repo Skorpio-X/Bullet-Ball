@@ -3,6 +3,9 @@ extends Node2D
 
 var ball = preload("res://Ball2.tscn")
 var projectile = preload("res://Projectile.tscn")
+var map1 = preload("res://map1.tscn")
+var map2 = preload("res://map2.tscn")
+var map3 = preload("res://map3.tscn")
 var player1_start_pos = Vector2(130, 360)
 var player2_start_pos = Vector2(1150, 360)
 var player1_start_angle = 0
@@ -15,10 +18,24 @@ var game_over = false
 var game_time = 180
 var max_point_value = 15
 var max_points = null
+var map = map1.instance()
+var maps = [map1, map2, map3]
+var map_index = 0
 
 
 func _ready():
 	set_process(true)
+	map.name = 'map'
+	add_child(map, true)
+	move_child($map, 0)
+	# Not needed since area2Ds can have multiple collision shapes.
+#	for node in get_tree().get_nodes_in_group('goals1'):
+#		node.connect('body_entered', self, '_on_goal1_body_entered')
+#	for node in get_tree().get_nodes_in_group('goals2'):
+#		node.connect('body_entered', self, '_on_goal2_body_entered')
+	# Old single goal way.
+	$map/goal1.connect('body_entered', self, '_on_goal1_body_entered')
+	$map/goal2.connect('body_entered', self, '_on_goal2_body_entered')
 	restart()
 
 
@@ -33,6 +50,25 @@ func _process(delta):
 		$player2.shoot_timer = .5
 		$shoot_sound2.play()
 		$shoot_sound3.play()
+	if Input.is_action_just_pressed('ui_focus_next'):
+		# Remove the previous map.
+		map.queue_free()
+		remove_child(map)
+		for ball in $balls.get_children():
+			ball.queue_free()
+		# Increment map index.
+		map_index += 1
+		map_index %= len(maps)
+		# Add the new map.
+#		map = map1.instance()
+		map = maps[map_index].instance()
+		map.name = 'map'
+		add_child(map, true)
+		move_child($map, 0)
+		$map/goal1.connect('body_entered', self, '_on_goal1_body_entered')
+		$map/goal2.connect('body_entered', self, '_on_goal2_body_entered')
+		restart()
+		
 	if game_over and Input.is_action_just_pressed('restart'):
 		restart()
 	
@@ -60,8 +96,8 @@ func create_ball(spawn):
 
 func restart():
 	game_over = false
-	create_ball($ball_spawn1)
-	create_ball($ball_spawn2)
+	create_ball($map/ball_spawn1)
+	create_ball($map/ball_spawn2)
 	points1 = 0
 	points2 = 0
 	$points1.text = str(points1)

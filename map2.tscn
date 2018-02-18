@@ -1,0 +1,195 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ball_spawn1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ball_spawn2.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 20, 90 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 20.0002, 110 )
+
+[node name="map2" type="Node2D"]
+
+[node name="ball_spawn1" parent="." index="0" instance=ExtResource( 1 )]
+
+[node name="ball_spawn2" parent="." index="1" instance=ExtResource( 2 )]
+
+[node name="goal1" type="Area2D" parent="." index="2"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goal1" index="0"]
+
+position = Vector2( 20, 90 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="goal1" index="1"]
+
+position = Vector2( 1020, 100 )
+shape = SubResource( 2 )
+
+[node name="Polygon2D" type="Polygon2D" parent="goal1" index="2"]
+
+position = Vector2( -600, -80 )
+scale = Vector2( 16, 1.44444 )
+polygon = PoolVector2Array( 40, 0, 40, 180, 30, 180, 30, 0 )
+uv = PoolVector2Array(  )
+color = Color( 0.264343, 0.953125, 0.307392, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Polygon2D2" type="Polygon2D" parent="goal1" index="3"]
+
+position = Vector2( -120, -43.3333 )
+scale = Vector2( 1.42857, 1.24074 )
+polygon = PoolVector2Array( 0, 180, 112, 180, 280, 365.373, 280, 445.97, 259, 445.97, 259, 720, 0, 720 )
+uv = PoolVector2Array(  )
+color = Color( 0.113725, 0.729412, 0.239216, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="goal1" index="4"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="goal1/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( 0, 180, 40, 180, 280, 410, 280, 510, 250, 510, 250, 720, 0, 720 )
+
+[node name="Polygon2D3" type="Polygon2D" parent="goal1" index="5"]
+
+polygon = PoolVector2Array( 1000, 210, 1000, -140, 1030, -140, 1030, 210 )
+uv = PoolVector2Array(  )
+color = Color( 0.262745, 0.952941, 0.305882, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="goal2" type="Area2D" parent="." index="3"]
+
+position = Vector2( 1280, 720 )
+rotation = 3.14159
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goal2" index="0"]
+
+position = Vector2( 20.0001, 90 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="goal2" index="1"]
+
+position = Vector2( 1020, 110 )
+rotation = 3.14159
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Polygon2D" type="Polygon2D" parent="goal2" index="2"]
+
+position = Vector2( -456, -83.2134 )
+scale = Vector2( 12.4, 1.4623 )
+polygon = PoolVector2Array( 40, 0, 40, 180, 30, 180, 30, 0 )
+uv = PoolVector2Array(  )
+color = Color( 0.12442, 0.229868, 0.589844, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Polygon2D2" type="Polygon2D" parent="goal2" index="3"]
+
+position = Vector2( -84.0001, -1.52588e-05 )
+scale = Vector2( 1.3, 1 )
+polygon = PoolVector2Array( 0, 180, 95.3846, 180, 280, 410, 280, 510, 256.923, 510, 256.923, 860, 0.00012207, 860 )
+uv = PoolVector2Array(  )
+color = Color( 0.0705882, 0.101961, 0.423529, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="goal2" index="4"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="goal2/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( 0, 180, 40, 180, 280, 410, 280, 510, 250, 510, 250, 720, 0, 720 )
+
+[node name="Polygon2D3" type="Polygon2D" parent="goal2" index="5"]
+
+polygon = PoolVector2Array( 1030, 210, 1000, 210, 1000, -130, 1030, -130 )
+uv = PoolVector2Array(  )
+color = Color( 0.121569, 0.227451, 0.588235, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+

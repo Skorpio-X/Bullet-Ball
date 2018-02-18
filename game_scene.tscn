@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://game_scene.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
@@ -10,20 +10,15 @@
 [ext_resource path="res://explosion8.wav" type="AudioStream" id=8]
 [ext_resource path="res://goal.wav" type="AudioStream" id=9]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=6]
 
 custom_solver_bias = 0.0
-extents = Vector2( 20, 140 )
+extents = Vector2( 100, 530 )
 
-[sub_resource type="RectangleShape2D" id=2]
-
-custom_solver_bias = 0.0
-extents = Vector2( 131, 528 )
-
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=7]
 
 custom_solver_bias = 0.0
-extents = Vector2( 824.666, 86 )
+extents = Vector2( 650, 80 )
 
 [sub_resource type="DynamicFont" id=4]
 
@@ -72,135 +67,12 @@ __meta__ = {
 "_edit_vertical_guides_": [ 100.0, 160.0, 1180.0, 1120.0 ]
 }
 
-[node name="goal1" type="Area2D" parent="." index="0"]
+[node name="balls" type="Node2D" parent="." index="0"]
 
-editor/display_folded = true
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
+[node name="projectiles" type="Node2D" parent="." index="1"]
 
-[node name="Polygon2D" type="Polygon2D" parent="goal1" index="0"]
+[node name="walls" type="StaticBody2D" parent="." index="2"]
 
-polygon = PoolVector2Array( 0, 0, 160, 0, 100, 220, 20, 244, 20, 476, 100, 500, 160, 720, 0, 720 )
-uv = PoolVector2Array(  )
-color = Color( 0.114136, 0.730469, 0.239328, 1 )
-vertex_colors = PoolColorArray(  )
-offset = Vector2( 0, 0 )
-antialiased = true
-texture = null
-texture_offset = Vector2( 0, 0 )
-texture_scale = Vector2( 1, 1 )
-texture_rotation_degrees = 0.0
-invert_enable = false
-invert_border = 100.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="goal1" index="1"]
-
-position = Vector2( 0, 360 )
-shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="goal1" index="2"]
-
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="goal1/StaticBody2D" index="0"]
-
-build_mode = 0
-polygon = PoolVector2Array( 100, 220, 160, 0, 0, 0, 0, 250 )
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="goal1/StaticBody2D" index="1"]
-
-build_mode = 0
-polygon = PoolVector2Array( 0, 470, 100, 500, 160, 720, 0, 720 )
-
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="goal1/StaticBody2D" index="2"]
-
-build_mode = 0
-polygon = PoolVector2Array( 0, 220, 20, 220, 20, 500, 0, 500 )
-
-[node name="goal2" type="Area2D" parent="." index="1"]
-
-editor/display_folded = true
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Collision" ]
-
-[node name="Polygon2D2" type="Polygon2D" parent="goal2" index="0"]
-
-position = Vector2( 1282.78, 686.963 )
-rotation = 3.14159
-polygon = PoolVector2Array( 0.935425, -32.0992, 162.78, -33.0366, 102.78, 186.963, 22.7795, 210.963, 22.7789, 442.963, 102.779, 466.963, 162.778, 686.963, 2.77832, 686.963 )
-uv = PoolVector2Array(  )
-color = Color( 0.0715179, 0.101962, 0.425781, 1 )
-vertex_colors = PoolColorArray(  )
-offset = Vector2( 0, 0 )
-antialiased = true
-texture = null
-texture_offset = Vector2( 0, 0 )
-texture_scale = Vector2( 1, 1 )
-texture_rotation_degrees = 0.0
-invert_enable = false
-invert_border = 100.0
-_sections_unfolded = [ "Transform" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="goal2" index="1"]
-
-position = Vector2( 1280, 360 )
-shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="goal2" index="2"]
-
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="goal2/StaticBody2D2" index="0"]
-
-position = Vector2( 1277.69, 694.796 )
-rotation = -3.15429
-build_mode = 0
-polygon = PoolVector2Array( 95.2103, 196.021, 157.998, -23.2001, -1.98914, -25.231, -5.16235, 224.749 )
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="goal2/StaticBody2D2" index="1"]
-
-position = Vector2( 1286.25, -512.746 )
-scale = Vector2( -0.965513, 1 )
-build_mode = 0
-polygon = PoolVector2Array( 6.47729, 512.746, 172.192, 512.746, 110.049, 732.746, 6.47729, 762.746 )
-
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="goal2/StaticBody2D2" index="2"]
-
-build_mode = 0
-polygon = PoolVector2Array( 1260, 220, 1280, 220, 1280, 500, 1260, 500 )
-
-[node name="balls" type="Node2D" parent="." index="2"]
-
-[node name="projectiles" type="Node2D" parent="." index="3"]
-
-[node name="walls" type="StaticBody2D" parent="." index="4"]
-
-editor/display_folded = true
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -212,36 +84,31 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="walls" index="0"]
 
-position = Vector2( -132, 360 )
-shape = SubResource( 2 )
-_sections_unfolded = [ "Transform" ]
+position = Vector2( -100, 360 )
+shape = SubResource( 6 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="walls" index="1"]
 
-position = Vector2( 1413, 358 )
-shape = SubResource( 2 )
-_sections_unfolded = [ "Transform" ]
+position = Vector2( 1380, 360 )
+shape = SubResource( 6 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="walls" index="2"]
 
-position = Vector2( 660, -87.1771 )
-scale = Vector2( 1, 1.02063 )
-shape = SubResource( 3 )
-_sections_unfolded = [ "Transform" ]
+position = Vector2( 640, -80 )
+shape = SubResource( 7 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="walls" index="3"]
 
-position = Vector2( 660, 806 )
-shape = SubResource( 3 )
-_sections_unfolded = [ "Transform" ]
+position = Vector2( 640, 800 )
+shape = SubResource( 7 )
 
-[node name="player1" parent="." index="5" instance=ExtResource( 2 )]
+[node name="player1" parent="." index="3" instance=ExtResource( 2 )]
 
 position = Vector2( 130, 360 )
 collision_mask = 3
 _sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="player2" parent="." index="6" instance=ExtResource( 2 )]
+[node name="player2" parent="." index="4" instance=ExtResource( 2 )]
 
 position = Vector2( 1150, 360 )
 rotation = 3.14159
@@ -253,7 +120,7 @@ move_left = "player2_left"
 move_right = "player2_right"
 color = "2629df"
 
-[node name="points1" type="Label" parent="." index="7"]
+[node name="points1" type="Label" parent="." index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -274,7 +141,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors", "custom_constants", "custom_fonts" ]
 
-[node name="points2" type="Label" parent="." index="8"]
+[node name="points2" type="Label" parent="." index="6"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -296,7 +163,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="debug" type="Label" parent="." index="9"]
+[node name="debug" type="Label" parent="." index="7"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -315,7 +182,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="time" type="Label" parent="." index="10"]
+[node name="time" type="Label" parent="." index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -338,24 +205,14 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="ball_spawn1" type="Position2D" parent="." index="11"]
-
-position = Vector2( 640, 180 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="ball_spawn2" type="Position2D" parent="." index="12"]
-
-position = Vector2( 640, 540 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Timer" type="Timer" parent="." index="13"]
+[node name="Timer" type="Timer" parent="." index="9"]
 
 process_mode = 1
 wait_time = 180.0
 one_shot = true
 autostart = true
 
-[node name="winner" type="Label" parent="." index="14"]
+[node name="winner" type="Label" parent="." index="10"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -378,7 +235,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="shoot_sound" type="AudioStreamPlayer" parent="." index="15"]
+[node name="shoot_sound" type="AudioStreamPlayer" parent="." index="11"]
 
 stream = ExtResource( 5 )
 volume_db = -3.0
@@ -386,7 +243,7 @@ autoplay = false
 mix_target = 0
 bus = "Bus1"
 
-[node name="shoot_sound2" type="AudioStreamPlayer" parent="." index="16"]
+[node name="shoot_sound2" type="AudioStreamPlayer" parent="." index="12"]
 
 stream = ExtResource( 5 )
 volume_db = -3.0
@@ -394,7 +251,7 @@ autoplay = false
 mix_target = 0
 bus = "Bus2"
 
-[node name="shoot_sound3" type="AudioStreamPlayer2D" parent="." index="17"]
+[node name="shoot_sound3" type="AudioStreamPlayer2D" parent="." index="13"]
 
 stream = ExtResource( 6 )
 volume_db = 0.0
@@ -404,7 +261,7 @@ attenuation = 1.0
 bus = "Bus3"
 area_mask = 1
 
-[node name="shoot_sound4" type="AudioStreamPlayer" parent="." index="18"]
+[node name="shoot_sound4" type="AudioStreamPlayer" parent="." index="14"]
 
 stream = ExtResource( 7 )
 volume_db = 0.0
@@ -412,7 +269,7 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="explosion_sound" type="AudioStreamPlayer" parent="." index="19"]
+[node name="explosion_sound" type="AudioStreamPlayer" parent="." index="15"]
 
 stream = ExtResource( 8 )
 volume_db = -9.0
@@ -420,7 +277,7 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="goal_sound" type="AudioStreamPlayer" parent="." index="20"]
+[node name="goal_sound" type="AudioStreamPlayer" parent="." index="16"]
 
 stream = ExtResource( 9 )
 volume_db = -9.0
@@ -428,7 +285,7 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="21"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="17"]
 
 root_node = NodePath("..")
 autoplay = ""
@@ -438,7 +295,7 @@ playback_speed = 1.0
 anims/shake = SubResource( 5 )
 blend_times = [  ]
 
-[node name="Camera2D" type="Camera2D" parent="." index="22"]
+[node name="Camera2D" type="Camera2D" parent="." index="18"]
 
 offset = Vector2( 640, 360 )
 anchor_mode = 1
@@ -464,10 +321,6 @@ editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Offset", "Transform" ]
-
-[connection signal="body_entered" from="goal1" to="." method="_on_goal1_body_entered"]
-
-[connection signal="body_entered" from="goal2" to="." method="_on_goal2_body_entered"]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 

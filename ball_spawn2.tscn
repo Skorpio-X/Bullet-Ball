@@ -1,0 +1,8 @@
+[gd_scene format=2]
+
+[node name="ball_spawn2" type="Position2D"]
+
+position = Vector2( 640, 540 )
+_sections_unfolded = [ "Transform" ]
+
+
