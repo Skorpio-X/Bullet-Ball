@@ -10,17 +10,17 @@
 [ext_resource path="res://explosion8.wav" type="AudioStream" id=8]
 [ext_resource path="res://goal.wav" type="AudioStream" id=9]
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 100, 530 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 650, 80 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=3]
 
 size = 42
 use_mipmaps = false
@@ -28,7 +28,7 @@ use_filter = false
 font_data = ExtResource( 4 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 
 resource_name = "shake"
 length = 0.5
@@ -85,22 +85,22 @@ _sections_unfolded = [ "Collision" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="walls" index="0"]
 
 position = Vector2( -100, 360 )
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="walls" index="1"]
 
 position = Vector2( 1380, 360 )
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="walls" index="2"]
 
 position = Vector2( 640, -80 )
-shape = SubResource( 7 )
+shape = SubResource( 2 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="walls" index="3"]
 
 position = Vector2( 640, 800 )
-shape = SubResource( 7 )
+shape = SubResource( 2 )
 
 [node name="player1" parent="." index="3" instance=ExtResource( 2 )]
 
@@ -197,7 +197,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "0"
 align = 1
 percent_visible = 1.0
@@ -292,7 +292,7 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/shake = SubResource( 5 )
+anims/shake = SubResource( 4 )
 blend_times = [  ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="18"]
