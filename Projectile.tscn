@@ -7,7 +7,7 @@
 custom_solver_bias = 0.0
 points = PoolVector2Array( 0, -10, 8.66025, 5, -8.66025, 5 )
 
-[node name="Projectile" type="RigidBody2D"]
+[node name="Projectile" type="RigidBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 4
