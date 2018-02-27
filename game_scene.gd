@@ -21,6 +21,8 @@ var max_points = null
 var map = map1.instance()
 var maps = [map1, map2, map3]
 var map_index = 0
+var human_script = preload("res://Player.gd")
+var ai_script = preload("res://PlayerAI.gd")
 
 
 func _ready():
@@ -28,18 +30,23 @@ func _ready():
 	map.name = 'map'
 	add_child(map, true)
 	move_child($map, 0)
-	# Not needed since area2Ds can have multiple collision shapes.
-#	for node in get_tree().get_nodes_in_group('goals1'):
-#		node.connect('body_entered', self, '_on_goal1_body_entered')
-#	for node in get_tree().get_nodes_in_group('goals2'):
-#		node.connect('body_entered', self, '_on_goal2_body_entered')
-	# Old single goal way.
+	# Connect the goals.
 	$map/goal1.connect('body_entered', self, '_on_goal1_body_entered')
 	$map/goal2.connect('body_entered', self, '_on_goal2_body_entered')
+	if global.player1 == 'AI':
+		print($player1.get_script(), ai_script)
+		$player1.set_script(ai_script)
+		$player1.connect('fire', self, '_on_player1_fire')
+		$player1.goal = $map/goal2
+	if global.player2 == 'AI':
+		$player2.set_script(ai_script)
+		$player2.connect('fire', self, '_on_player2_fire')
+		$player2.goal = $map/goal1
 	restart()
 
 
 func _process(delta):
+	update()
 	if Input.is_action_pressed('player1_shoot') and $player1.shoot_timer <= 0:
 		create_projectile($player1)
 		$player1.shoot_timer = .5
@@ -60,7 +67,6 @@ func _process(delta):
 		map_index += 1
 		map_index %= len(maps)
 		# Add the new map.
-#		map = map1.instance()
 		map = maps[map_index].instance()
 		map.name = 'map'
 		add_child(map, true)
@@ -68,6 +74,8 @@ func _process(delta):
 		$map/goal1.connect('body_entered', self, '_on_goal1_body_entered')
 		$map/goal2.connect('body_entered', self, '_on_goal2_body_entered')
 		restart()
+	if Input.is_action_pressed('ui_cancel'):
+		get_node("/root/global").goto_scene("res://start_menu.tscn")
 		
 	if game_over and Input.is_action_just_pressed('restart'):
 		restart()
@@ -152,3 +160,25 @@ func _on_Timer_timeout():
 		text = 'Player2 is the winner!'
 	text += '\nPress Enter to restart.'
 	$winner.text = text
+
+
+func _on_player1_fire():
+	if $player1.shoot_timer <= 0:
+		create_projectile($player1)
+		$player1.shoot_timer = .5
+		$shoot_sound2.play()
+		$shoot_sound3.play()
+
+
+func _on_player2_fire():
+	if $player2.shoot_timer <= 0:
+		create_projectile($player2)
+		$player2.shoot_timer = .5
+		$shoot_sound2.play()
+		$shoot_sound3.play()
+
+func _draw():
+	draw_line($player2.estimated_ball_position, $player2.estimated_ball_position+$player2.vector_to_goal, 'ffffff')
+	draw_line($player2.estimated_ball_position, $player2.estimated_ball_position+$player2.reflected_vector, 'ff6600')
+#	draw_line($player2.position, Vector2(100, 200), '00ff55')
+	

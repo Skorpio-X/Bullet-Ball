@@ -11,8 +11,12 @@ config_version=3
 [application]
 
 config/name="Dyna Ball"
-run/main_scene="res://game_scene.tscn"
+run/main_scene="res://start_menu.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+global="*res://global.gd"
 
 [display]
 

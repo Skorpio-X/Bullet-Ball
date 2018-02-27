@@ -15,7 +15,8 @@ export(String) var move_back = 'player1_back'
 export(String) var move_left = 'player1_left'
 export(String) var move_right = 'player1_right'
 export(String) var color = '57ff49'
-
+# Player 1 color: '57ff49'
+# Player 2 color: '2629df'
 
 func _ready():
 	set_process_input(true)
@@ -35,7 +36,7 @@ func _input(event):
 		angle_change = -angle_speed
 	elif event.is_action_pressed(move_right):
 		angle_change = angle_speed
-		
+	
 	elif event.is_action_released(move_forward):
 		speed = 0
 	elif event.is_action_released(move_back):

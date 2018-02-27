@@ -60,7 +60,7 @@ tracks/1/keys = {
 "values": [ 0.0, -2.0, 3.7, -3.7, 2.8, 0.0 ]
 }
 
-[node name="scene_root" type="Node2D" index="0"]
+[node name="scene_root" type="Node2D"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -107,6 +107,7 @@ shape = SubResource( 2 )
 
 position = Vector2( 130, 360 )
 collision_mask = 3
+script = ExtResource( 3 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="player2" parent="." index="4" instance=ExtResource( 2 )]
@@ -116,6 +117,11 @@ rotation = 3.14159
 collision_mask = 3
 script = ExtResource( 3 )
 _sections_unfolded = [ "Collision", "Transform" ]
+move_forward = "player2_forward"
+move_back = "player2_back"
+move_left = "player2_left"
+move_right = "player2_right"
+color = "2629df"
 
 [node name="points1" type="Label" parent="." index="5"]
 
