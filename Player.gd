@@ -55,6 +55,10 @@ func _physics_process(delta):
 	else:
 		angular_velocity = 0
 	
+	accelerate(delta)
+
+
+func accelerate(delta):
 	if speed != 0:
 		vel = vel_orig.rotated(rotation) * speed * delta
 		apply_impulse(Vector2(), vel)

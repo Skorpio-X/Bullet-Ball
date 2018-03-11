@@ -38,10 +38,12 @@ func _ready():
 		$player1.set_script(ai_script)
 		$player1.connect('fire', self, '_on_player1_fire')
 		$player1.goal = $map/goal2
+		$player1.defense_pos = $map/defense_pos_1.position
 	if global.player2 == 'AI':
 		$player2.set_script(ai_script)
 		$player2.connect('fire', self, '_on_player2_fire')
 		$player2.goal = $map/goal1
+		$player2.defense_pos = $map/defense_pos_2.position
 	restart()
 
 
@@ -177,8 +179,8 @@ func _on_player2_fire():
 		$shoot_sound2.play()
 		$shoot_sound3.play()
 
-func _draw():
-	draw_line($player2.estimated_ball_position, $player2.estimated_ball_position+$player2.vector_to_goal, 'ffffff')
-	draw_line($player2.estimated_ball_position, $player2.estimated_ball_position+$player2.reflected_vector, 'ff6600')
+#func _draw():
+#	draw_line($player2.estimated_ball_position, $player2.estimated_ball_position+$player2.vector_to_goal, 'ffffff')
+#	draw_line($player2.estimated_ball_position, $player2.estimated_ball_position+$player2.reflected_vector, 'ff6600')
 #	draw_line($player2.position, Vector2(100, 200), '00ff55')
 	
