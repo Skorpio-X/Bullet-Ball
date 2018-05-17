@@ -1,15 +1,17 @@
 extends RigidBody2D
 
 
-var angle_speed = 120
+var angle_speed = 3 #120
 var angle_change = 0
 var vel_orig = Vector2(1, 0)
 var vel = Vector2(1, 0)
 var speed = 0
+var max_speed = 10  # 300
 var reset = false
 var start_pos = null
 var start_angle = null
 var shoot_timer = .5
+var shoot_time = 2.5  # Reset the timer to this value. Was 0.5.
 export(String) var move_forward = 'player1_forward'
 export(String) var move_back = 'player1_back'
 export(String) var move_left = 'player1_left'
@@ -29,9 +31,9 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed(move_forward):
-		speed = 300
+		speed = max_speed
 	elif event.is_action_pressed(move_back):
-		speed = -300
+		speed = -max_speed
 	elif event.is_action_pressed(move_left):
 		angle_change = -angle_speed
 	elif event.is_action_pressed(move_right):
@@ -51,7 +53,7 @@ func _physics_process(delta):
 	shoot_timer -= delta
 	
 	if angle_change != 0:
-		angular_velocity = angle_change * delta
+		angular_velocity = angle_change #* delta # See if this works correctly without delta
 	else:
 		angular_velocity = 0
 	
@@ -60,7 +62,7 @@ func _physics_process(delta):
 
 func accelerate(delta):
 	if speed != 0:
-		vel = vel_orig.rotated(rotation) * speed * delta
+		vel = vel_orig.rotated(rotation) * speed #* delta # See if this works correctly without delta
 		apply_impulse(Vector2(), vel)
 
 

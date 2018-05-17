@@ -51,12 +51,12 @@ func _process(delta):
 	update()
 	if Input.is_action_pressed('player1_shoot') and $player1.shoot_timer <= 0:
 		create_projectile($player1)
-		$player1.shoot_timer = .5
+		$player1.shoot_timer = $player1.shoot_time
 		$shoot_sound2.play()
 		$shoot_sound3.play()
 	if Input.is_action_pressed('player2_shoot') and $player2.shoot_timer <= 0:
 		create_projectile($player2)
-		$player2.shoot_timer = .5
+		$player2.shoot_timer = $player2.shoot_time
 		$shoot_sound2.play()
 		$shoot_sound3.play()
 	if Input.is_action_just_pressed('ui_focus_next'):
@@ -167,7 +167,7 @@ func _on_Timer_timeout():
 func _on_player1_fire():
 	if $player1.shoot_timer <= 0:
 		create_projectile($player1)
-		$player1.shoot_timer = .5
+		$player1.shoot_timer = $player1.shoot_time
 		$shoot_sound2.play()
 		$shoot_sound3.play()
 
@@ -175,12 +175,14 @@ func _on_player1_fire():
 func _on_player2_fire():
 	if $player2.shoot_timer <= 0:
 		create_projectile($player2)
-		$player2.shoot_timer = .5
+		$player2.shoot_timer = $player2.shoot_time
 		$shoot_sound2.play()
 		$shoot_sound3.play()
 
 #func _draw():
-#	draw_line($player2.estimated_ball_position, $player2.estimated_ball_position+$player2.vector_to_goal, 'ffffff')
-#	draw_line($player2.estimated_ball_position, $player2.estimated_ball_position+$player2.reflected_vector, 'ff6600')
-#	draw_line($player2.position, Vector2(100, 200), '00ff55')
+##	draw_line($player2.estimated_ball_position, $player2.estimated_ball_position+$player2.vector_to_goal, 'ffffff')
+##	draw_line($player2.estimated_ball_position, $player2.estimated_ball_position+$player2.reflected_vector, 'ff6600')
+##	draw_line($player2.position, Vector2(100, 200), '00ff55')
+#	if $player2.target_vector:
+#		draw_line($player2.target_vector, $player2.position, 'ff6600')
 	
