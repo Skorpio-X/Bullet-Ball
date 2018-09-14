@@ -60,7 +60,7 @@ tracks/1/keys = {
 "values": [ 0.0, -2.0, 3.7, -3.7, 2.8, 0.0 ]
 }
 
-[node name="scene_root" type="Node2D"]
+[node name="scene_root" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -109,6 +109,8 @@ position = Vector2( 130, 360 )
 collision_mask = 3
 script = ExtResource( 3 )
 _sections_unfolded = [ "Collision", "Transform" ]
+color_ready = "ccffcc"
+color_reloading = "18532e"
 
 [node name="player2" parent="." index="4" instance=ExtResource( 2 )]
 
@@ -133,6 +135,7 @@ margin_left = 5.0
 margin_right = 45.0
 margin_bottom = 46.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -154,6 +157,7 @@ margin_left = 1234.0
 margin_right = 1274.0
 margin_bottom = 14.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -177,6 +181,7 @@ margin_top = 23.0
 margin_right = 46.0
 margin_bottom = 37.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -196,6 +201,7 @@ margin_top = 10.0
 margin_right = 660.0
 margin_bottom = 24.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -215,7 +221,14 @@ wait_time = 180.0
 one_shot = true
 autostart = true
 
-[node name="winner" type="Label" parent="." index="10"]
+[node name="DelayTimer" type="Timer" parent="." index="10"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="winner" type="Label" parent="." index="11"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -226,6 +239,7 @@ margin_top = 221.0
 margin_right = 753.0
 margin_bottom = 284.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -238,57 +252,63 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="shoot_sound" type="AudioStreamPlayer" parent="." index="11"]
+[node name="shoot_sound" type="AudioStreamPlayer" parent="." index="12"]
 
 stream = ExtResource( 6 )
 volume_db = -3.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Bus1"
 
-[node name="shoot_sound2" type="AudioStreamPlayer" parent="." index="12"]
+[node name="shoot_sound2" type="AudioStreamPlayer" parent="." index="13"]
 
 stream = ExtResource( 6 )
 volume_db = -3.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Bus2"
 
-[node name="shoot_sound3" type="AudioStreamPlayer2D" parent="." index="13"]
+[node name="shoot_sound3" type="AudioStreamPlayer2D" parent="." index="14"]
 
 stream = ExtResource( 7 )
 volume_db = 0.0
+pitch_scale = 1.0
 autoplay = false
 max_distance = 2000.0
 attenuation = 1.0
 bus = "Bus3"
 area_mask = 1
 
-[node name="shoot_sound4" type="AudioStreamPlayer" parent="." index="14"]
+[node name="shoot_sound4" type="AudioStreamPlayer" parent="." index="15"]
 
 stream = ExtResource( 8 )
 volume_db = 0.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="explosion_sound" type="AudioStreamPlayer" parent="." index="15"]
+[node name="explosion_sound" type="AudioStreamPlayer" parent="." index="16"]
 
 stream = ExtResource( 9 )
 volume_db = -9.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="goal_sound" type="AudioStreamPlayer" parent="." index="16"]
+[node name="goal_sound" type="AudioStreamPlayer" parent="." index="17"]
 
 stream = ExtResource( 10 )
 volume_db = -9.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="17"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="18"]
 
 root_node = NodePath("..")
 autoplay = ""
@@ -298,7 +318,7 @@ playback_speed = 1.0
 anims/shake = SubResource( 4 )
 blend_times = [  ]
 
-[node name="Camera2D" type="Camera2D" parent="." index="18"]
+[node name="Camera2D" type="Camera2D" parent="." index="19"]
 
 offset = Vector2( 640, 360 )
 anchor_mode = 1
@@ -326,5 +346,7 @@ editor_draw_drag_margin = false
 _sections_unfolded = [ "Offset", "Transform" ]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[connection signal="timeout" from="DelayTimer" to="." method="_on_DelayTimer_timeout"]
 
 

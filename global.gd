@@ -4,6 +4,9 @@ var current_scene = null
 var number = 42
 var player1 = 'Human'
 var player2 = 'Human'
+var max_points = 10
+var arena = 0
+
 
 func _ready():
 	var root = get_tree().get_root()

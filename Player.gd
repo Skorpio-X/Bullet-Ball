@@ -16,9 +16,12 @@ export(String) var move_forward = 'player1_forward'
 export(String) var move_back = 'player1_back'
 export(String) var move_left = 'player1_left'
 export(String) var move_right = 'player1_right'
+# Player 1 color: '57ff49', color_ready: 'ccffcc', color_reloading: '18532e'
+# Player 2 color: '2629df', color_ready: '00a5ff', color_reloading: '225d7d' 002662
 export(String) var color = '57ff49'
-# Player 1 color: '57ff49'
-# Player 2 color: '2629df'
+export(String) var color_ready = '00a5ff'
+export(String) var color_reloading = '002662'
+
 
 func _ready():
 	set_process_input(true)
@@ -26,6 +29,7 @@ func _ready():
 	custom_integrator = true
 	angular_damp = 10
 	$Polygon2D.color = color
+	$Polygon2D2.color = color_ready
 	$Particles2D.modulate = color
 
 
@@ -51,6 +55,10 @@ func _input(event):
 
 func _physics_process(delta):
 	shoot_timer -= delta
+	if shoot_timer <= 0:
+		$Polygon2D2.color = color_ready
+	else:
+		$Polygon2D2.color = color_reloading
 	
 	if angle_change != 0:
 		angular_velocity = angle_change #* delta # See if this works correctly without delta

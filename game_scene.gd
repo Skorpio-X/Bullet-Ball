@@ -16,10 +16,10 @@ var ball1 = null
 var ball2 = null
 var game_over = false
 var game_time = 180
-var max_point_value = 15
+var max_point_value = global.max_points
 var max_points = null
-var map = map1.instance()
 var maps = [map1, map2, map3]
+var map = maps[global.arena].instance()
 var map_index = 0
 var human_script = preload("res://Player.gd")
 var ai_script = preload("res://PlayerAI.gd")
@@ -34,7 +34,7 @@ func _ready():
 	$map/goal1.connect('body_entered', self, '_on_goal1_body_entered')
 	$map/goal2.connect('body_entered', self, '_on_goal2_body_entered')
 	if global.player1 == 'AI':
-		print($player1.get_script(), ai_script)
+#		print($player1.get_script(), ai_script)
 		$player1.set_script(ai_script)
 		$player1.connect('fire', self, '_on_player1_fire')
 		$player1.goal = $map/goal2
@@ -118,6 +118,8 @@ func restart():
 	$player2.start_angle = player2_start_angle
 	$player1.reset = true
 	$player2.reset = true
+	$player1.shoot_timer = 0
+	$player2.shoot_timer = 0
 	for projectile in $projectiles.get_children():
 		projectile.queue_free()
 	$Timer.wait_time = game_time
@@ -151,7 +153,9 @@ func _on_goal2_body_entered( body ):
 
 
 func _on_Timer_timeout():
-	game_over = true
+	$Timer.stop()
+#	game_over = true
+	$DelayTimer.start()
 	for ball in $balls.get_children():
 		ball.queue_free()
 	
@@ -162,6 +166,10 @@ func _on_Timer_timeout():
 		text = 'Player2 is the winner!'
 	text += '\nPress Enter to restart.'
 	$winner.text = text
+
+
+func _on_DelayTimer_timeout():
+	game_over = true
 
 
 func _on_player1_fire():
@@ -179,10 +187,10 @@ func _on_player2_fire():
 		$shoot_sound2.play()
 		$shoot_sound3.play()
 
+
 #func _draw():
 ##	draw_line($player2.estimated_ball_position, $player2.estimated_ball_position+$player2.vector_to_goal, 'ffffff')
 ##	draw_line($player2.estimated_ball_position, $player2.estimated_ball_position+$player2.reflected_vector, 'ff6600')
 ##	draw_line($player2.position, Vector2(100, 200), '00ff55')
 #	if $player2.target_vector:
 #		draw_line($player2.target_vector, $player2.position, 'ff6600')
-	
