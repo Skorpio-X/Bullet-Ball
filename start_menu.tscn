@@ -223,7 +223,61 @@ flat = false
 align = 1
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="LabelMaxPoints" type="Label" parent="." index="6"]
+[node name="Button+2" type="Button" parent="." index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 570.0
+margin_top = 630.0
+margin_right = 630.0
+margin_bottom = 675.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 3 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "+"
+flat = false
+align = 1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="Button-2" type="Button" parent="." index="7"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 660.0
+margin_top = 630.0
+margin_right = 720.0
+margin_bottom = 675.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 3 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "-"
+flat = false
+align = 1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="LabelMaxPoints" type="Label" parent="." index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -246,7 +300,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect" ]
 
-[node name="LabelPoints" type="Label" parent="." index="7"]
+[node name="LabelPoints" type="Label" parent="." index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -269,7 +323,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect" ]
 
-[node name="ButtonArena" type="Button" parent="." index="8"]
+[node name="ButtonArena" type="Button" parent="." index="10"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -296,7 +350,7 @@ flat = false
 align = 1
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="Arena" type="Label" parent="." index="9"]
+[node name="Arena" type="Label" parent="." index="11"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -318,6 +372,52 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="LabelFireRate" type="Label" parent="." index="12"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 580.0
+margin_top = 582.0
+margin_right = 706.0
+margin_bottom = 621.0
+rect_pivot_offset = Vector2( 60, 20 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 3 )
+text = "Fire rate"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="LabelFireRate2" type="Label" parent="." index="13"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 750.0
+margin_top = 630.0
+margin_right = 790.0
+margin_bottom = 669.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 3 )
+text = "2.5"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
 [connection signal="pressed" from="StartButton" to="." method="_on_change_scene_pressed"]
 
 [connection signal="pressed" from="Player1Button" to="." method="_on_Player1Button_pressed"]
@@ -327,6 +427,14 @@ max_lines_visible = -1
 [connection signal="pressed" from="Button+" to="." method="_on_ButtonUp_pressed"]
 
 [connection signal="pressed" from="Button-" to="." method="_on_ButtonDown_pressed"]
+
+[connection signal="button_down" from="Button+2" to="." method="_on_Button2_button_down"]
+
+[connection signal="button_up" from="Button+2" to="." method="_on_Button_fire_rate_button_up"]
+
+[connection signal="button_down" from="Button-2" to="." method="_on_Button2_fire_rate_button_down"]
+
+[connection signal="button_up" from="Button-2" to="." method="_on_Button_fire_rate_button_down"]
 
 [connection signal="pressed" from="ButtonArena" to="." method="_on_ButtonArena_pressed"]
 

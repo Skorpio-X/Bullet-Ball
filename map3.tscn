@@ -185,4 +185,14 @@ bounce = 0.0
 build_mode = 0
 polygon = PoolVector2Array( 20.0001, 500, 0.00012207, 500, 0.00012207, 220, 20.0001, 220, 90.0001, 260, 90.0001, 460 )
 
+[node name="defense_pos_1" type="Position2D" parent="." index="4"]
+
+position = Vector2( 260, 360 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="defense_pos_2" type="Position2D" parent="." index="5"]
+
+position = Vector2( 1020, 360 )
+_sections_unfolded = [ "Transform" ]
+
 

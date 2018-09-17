@@ -93,7 +93,7 @@ move_forward = "player1_forward"
 move_back = "player1_back"
 move_left = "player1_left"
 move_right = "player1_right"
-color = "57ff49"
+color = "2629df"
 color_ready = "00a5ff"
 color_reloading = "002662"
 

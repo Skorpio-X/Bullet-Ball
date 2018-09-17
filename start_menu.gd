@@ -1,11 +1,29 @@
 extends Control
 
 
+var fire_rate_button_down = false
+var fire_rate_button_up = false
+var frame = 0
+
 func _ready():
+	set_process(true)
 	$Player1Button/Label.text = global.player1
 	$Player2Button/Label.text = global.player2
 	$LabelMaxPoints.text = str(global.max_points)
 	$Arena.text = str(global.arena+1)
+	$LabelFireRate2.text = str(global.fire_rate)
+
+
+func _process(delta):
+	frame += 1
+	frame %= 5
+	if fire_rate_button_down and frame == 0:
+		global.fire_rate -= .05
+		$LabelFireRate2.text = str(global.fire_rate)
+	elif fire_rate_button_up and frame == 0:
+		global.fire_rate += .05
+		$LabelFireRate2.text = str(global.fire_rate)
+
 
 func _on_change_scene_pressed():
 	get_node("/root/global").goto_scene("res://game_scene.tscn")
@@ -50,3 +68,25 @@ func _on_ButtonArena_pressed():
 	global.arena += 1
 	global.arena %= 3  # Should be len arenas.
 	$Arena.text = str(global.arena+1)
+
+
+func _on_Button2_button_down():
+#	global.fire_rate += .1
+	frame = 0
+	$LabelFireRate2.text = str(global.fire_rate)
+	fire_rate_button_up = true
+
+
+func _on_Button2_fire_rate_button_down():
+#	global.fire_rate -= .1
+	frame = 0
+	$LabelFireRate2.text = str(global.fire_rate)
+	fire_rate_button_down = true
+
+
+func _on_Button_fire_rate_button_up():
+	fire_rate_button_up = false
+
+
+func _on_Button_fire_rate_button_down():
+	fire_rate_button_down = false

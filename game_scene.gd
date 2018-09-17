@@ -27,7 +27,7 @@ var ai_script = preload("res://PlayerAI.gd")
 
 func _ready():
 	set_process(true)
-	map.name = 'map'
+	map.name = 'map'  # Change the name to access the node with $ later.
 	add_child(map, true)
 	move_child($map, 0)
 	# Connect the goals.
@@ -44,6 +44,8 @@ func _ready():
 		$player2.connect('fire', self, '_on_player2_fire')
 		$player2.goal = $map/goal1
 		$player2.defense_pos = $map/defense_pos_2.position
+		$player2.color_ready = '00a5ff'
+		$player2.color_reloading = '002662'
 	restart()
 
 

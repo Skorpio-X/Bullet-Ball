@@ -6,6 +6,7 @@ var player1 = 'Human'
 var player2 = 'Human'
 var max_points = 10
 var arena = 0
+var fire_rate = 2.5
 
 
 func _ready():
