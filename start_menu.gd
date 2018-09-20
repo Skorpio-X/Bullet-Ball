@@ -3,7 +3,10 @@ extends Control
 
 var fire_rate_button_down = false
 var fire_rate_button_up = false
+var points_button_down = false
+var points_button_up = false
 var frame = 0
+
 
 func _ready():
 	set_process(true)
@@ -12,17 +15,27 @@ func _ready():
 	$LabelMaxPoints.text = str(global.max_points)
 	$Arena.text = str(global.arena+1)
 	$LabelFireRate2.text = str(global.fire_rate)
+	$StartButton.grab_focus()
 
 
 func _process(delta):
 	frame += 1
 	frame %= 5
-	if fire_rate_button_down and frame == 0:
-		global.fire_rate -= .05
+	if fire_rate_button_down and frame == 1:
+		global.fire_rate -= .1
+		global.fire_rate = stepify(max(.1, global.fire_rate), .1)
 		$LabelFireRate2.text = str(global.fire_rate)
-	elif fire_rate_button_up and frame == 0:
-		global.fire_rate += .05
+	elif fire_rate_button_up and frame == 1:
+		global.fire_rate += .1
 		$LabelFireRate2.text = str(global.fire_rate)
+	
+	if points_button_up and frame == 1:
+		global.max_points += 1
+		$LabelMaxPoints.text = str(global.max_points)
+	elif points_button_down and frame == 1:
+		global.max_points -= 1
+		global.max_points = max(1, global.max_points)
+		$LabelMaxPoints.text = str(global.max_points)
 
 
 func _on_change_scene_pressed():
@@ -53,15 +66,19 @@ func _on_Player2Button_pressed():
 	global.player2 = new_text
 
 
-func _on_ButtonUp_pressed():
-	global.max_points += 1
-	$LabelMaxPoints.text = str(global.max_points)
+func _on_Point_Button_plus_down():
+	frame = 0
+	points_button_up = true
 
+func _on_Point_Button_up():
+	points_button_up = false
 
-func _on_ButtonDown_pressed():
-	global.max_points -= 1
-	global.max_points = max(1, global.max_points)
-	$LabelMaxPoints.text = str(global.max_points)
+func _on_Point_Button_minus_down():
+	frame = 0
+	points_button_down = true
+
+func _on_Point_Button_minus_up():
+	points_button_down = false
 
 
 func _on_ButtonArena_pressed():
@@ -76,17 +93,14 @@ func _on_Button2_button_down():
 	$LabelFireRate2.text = str(global.fire_rate)
 	fire_rate_button_up = true
 
-
 func _on_Button2_fire_rate_button_down():
 #	global.fire_rate -= .1
 	frame = 0
 	$LabelFireRate2.text = str(global.fire_rate)
 	fire_rate_button_down = true
 
-
 func _on_Button_fire_rate_button_up():
 	fire_rate_button_up = false
-
 
 func _on_Button_fire_rate_button_down():
 	fire_rate_button_down = false
